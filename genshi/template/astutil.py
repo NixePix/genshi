@@ -708,6 +708,9 @@ class ASTCodeGenerator(object):
         self._write('.')
         self._write(node.attr)
 
+    def visit_NameConstant(self, node):
+        self._write(str(node.value))
+
     # Subscript(expr value, slice slice, expr_context ctx)
     def visit_Subscript(self, node):
         self.visit(node.value)
@@ -869,5 +872,6 @@ class ASTTransformer(object):
     visit_Slice = _clone
     visit_ExtSlice = _clone
     visit_Index = _clone
+    visit_NameConstant = _clone
 
     del _clone
